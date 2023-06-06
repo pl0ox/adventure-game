@@ -1,20 +1,24 @@
 import time
 import random
 
+# Function to add a pause between printing messages
 def print_pause(message):
     print(message)
     time.sleep(2)
 
+# Function to introduce the game and set the mission
 def intro():
     print_pause("Welcome to the Adventure Game!")
     print_pause("You find yourself in a mysterious forest.")
     print_pause("Your mission is to find the hidden treasure.")
     print_pause("Be careful, danger lurks in every corner.")
 
+# Function to explore the forest and encounter different scenarios
 def explore_forest(total_score):
     print_pause("You start exploring the forest.")
     print_pause("As you walk, you hear strange sounds and see peculiar creatures.")
     
+    # Randomly choose one of three main scenarios
     main_scenario = random.choice([1, 2, 3])
     
     if main_scenario == 1:
@@ -22,6 +26,7 @@ def explore_forest(total_score):
         print_pause("Do you want to open the chest? (1) Yes (2) No")
         choice = input()
         if choice == '1':
+            # Randomly determine the outcome of opening the chest
             outcome = random.choice([1, 2, 3])
             if outcome == 1:
                 print_pause("You open the chest and find a stash of gold coins!")
@@ -96,12 +101,14 @@ def explore_forest(total_score):
     
     return total_score
 
+# Function to encounter an enemy and engage in a duel
 def encounter_enemy(total_score):
     print_pause("As you venture deeper into the forest, you encounter a fearsome enemy.")
     print_pause("The enemy challenges you to a duel.")
     print_pause("Do you want to fight? (1) Yes (2) No")
     choice = input()
     if choice == '1':
+        # Randomly determine the outcome of the battle
         outcome = random.choice([1, 2, 3, 4, 5, 6])
         if outcome == 1:
             print_pause("You summon all your courage and engage in a fierce battle.")
@@ -134,13 +141,14 @@ def encounter_enemy(total_score):
         return encounter_enemy(total_score)
     return total_score
 
-
+# Function to meet a stranger and interact with them
 def meet_stranger(total_score):
     print_pause("While exploring the forest, you come across a friendly stranger.")
     print_pause("The stranger offers you a valuable item.")
     print_pause("Do you accept? (1) Yes (2) No")
     choice = input()
     if choice == '1':
+        # Randomly determine the outcome of accepting the item
         outcome = random.choice([1, 2, 3, 4, 5, 6])
         if outcome == 1:
             item = 'Sword'
@@ -172,6 +180,7 @@ def meet_stranger(total_score):
         else:
             print_pause("The stranger turns out to be a disguised enemy!")
             print_pause("You engage in a battle to defend yourself.")
+            # Randomly determine the outcome of the battle with the disguised enemy
             outcome = random.choice(['win', 'lose'])
             if outcome == 'win':
                 print_pause("You defeat the enemy and continue your journey.")
@@ -187,6 +196,7 @@ def meet_stranger(total_score):
         return meet_stranger(total_score)
     return total_score
 
+# Function to start the game and handle the main gameplay loop
 def play_game():
     intro()
     total_score = 0
@@ -211,23 +221,35 @@ def play_game():
                 "You have conquered the forest and found the ultimate treasure!",
                 "With bravery and wit, you emerge victorious!",
                 "You are a true adventurer! Well done!",
-                "The forest bows down to your greatness. You win!"
+                "The forest bows down to your greatness."
                 ]
             print_pause(random.choice(win_sentences))
             print_pause("You win!")
-            break
+            print_pause("\nDo you want to play again? (1) Yes (2) No")
+            choice = input()
+            if choice == "1":
+                play_game()
+            else:
+                break
 
         elif total_score <= -5:
             lose_sentences = [
                 "Your score is too low. Game over!",
                 "Defeat engulfs you. The forest claims another victim.",
                 "You couldn't withstand the perils of the forest. Game over!",
-                "Your journey ends here. The forest remains unconquered.",
-                "The darkness consumes you. Game over!"
+                "Your journey ends here. Better luck next time.",
+                "The forest swallows you whole."
                 ]
             print_pause(random.choice(lose_sentences))
-            break
+            print_pause("You lose!")
+            print_pause("\nDo you want to play again? (1) Yes (2) No")
+            choice = input()
+            if choice == "1":
+                play_game()
+            else:
+                break
 
-    print_pause("Thank you for playing. Goodbye!")
+            
 
+# Start the game
 play_game()
