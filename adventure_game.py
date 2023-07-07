@@ -4,7 +4,7 @@ import random
 # Function to add a pause between printing messages
 def print_pause(message):
     print(message)
-    time.sleep(2)
+    time.sleep(0.5)
 
 # Function to introduce the game and set the mission
 def intro():
@@ -12,6 +12,10 @@ def intro():
     print_pause("You find yourself in a mysterious forest.")
     print_pause("Your mission is to find the hidden treasure.")
     print_pause("Be careful, danger lurks in every corner.")
+
+
+def print_score(total_score):
+    print_pause(f"Your current score is: {total_score}")
 
 # Function to explore the forest and encounter different scenarios
 def explore_forest(total_score):
@@ -98,7 +102,7 @@ def explore_forest(total_score):
         else:
             print_pause("Invalid input. Please enter 1 or 2.")
             return explore_forest(total_score)
-    
+    print_score(total_score)
     return total_score
 
 # Function to encounter an enemy and engage in a duel
@@ -139,6 +143,7 @@ def encounter_enemy(total_score):
     else:
         print_pause("Invalid input. Please enter 1 or 2.")
         return encounter_enemy(total_score)
+    print_score(total_score)
     return total_score
 
 # Function to meet a stranger and interact with them
@@ -194,6 +199,7 @@ def meet_stranger(total_score):
     else:
         print_pause("Invalid input. Please enter 1 or 2.")
         return meet_stranger(total_score)
+    print_score(total_score)
     return total_score
 
 # Function to start the game and handle the main gameplay loop
@@ -240,8 +246,8 @@ def play_game():
                 "Your journey ends here. Better luck next time.",
                 "The forest swallows you whole."
                 ]
+            print_score(total_score)
             print_pause(random.choice(lose_sentences))
-            print_pause("You lose!")
             print_pause("\nDo you want to play again? (1) Yes (2) No")
             choice = input()
             if choice == "1":
